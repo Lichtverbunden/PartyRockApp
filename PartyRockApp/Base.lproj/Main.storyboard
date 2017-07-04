@@ -9,11 +9,6 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="still time.ttf">
-            <string>StillTime-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--MainVC-->
         <scene sceneID="tne-QT-ifu">
@@ -27,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="partybanner" translatesAutoresizingMaskIntoConstraints="NO" id="obM-tV-1Sr">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="philcollins" translatesAutoresizingMaskIntoConstraints="NO" id="obM-tV-1Sr">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="196"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="196" id="8dC-w4-1bM"/>
@@ -75,7 +70,7 @@
                                 <rect key="frame" x="0.0" y="238" width="375" height="429"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="72" id="kln-yi-rc5">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PartyCell" rowHeight="72" id="kln-yi-rc5" customClass="PartyCell" customModule="PartyRockApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kln-yi-rc5" id="tAc-oS-mfz">
@@ -89,12 +84,12 @@
                                                         <constraint firstAttribute="width" constant="57" id="hNH-dL-8Lx"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where the sun goes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGi-KA-uue">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where the sun goes" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YGi-KA-uue">
                                                     <rect key="frame" x="73" y="16" width="294" height="39"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="39" id="fHm-5P-v3f"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="StillTime-Regular" family="Still Time" pointSize="34"/>
+                                                    <fontDescription key="fontDescription" name="SavoyeLetPlain" family="Savoye LET" pointSize="25"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -107,6 +102,10 @@
                                                 <constraint firstItem="AQg-wB-Ect" firstAttribute="leading" secondItem="tAc-oS-mfz" secondAttribute="leadingMargin" id="wd2-Ez-Iug"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="videoPreviewImage" destination="AQg-wB-Ect" id="Pw5-iV-cMb"/>
+                                            <outlet property="videoTitle" destination="YGi-KA-uue" id="mOb-uh-sU1"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -126,6 +125,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="tableView" destination="0yZ-jK-0Ta" id="gcA-dR-JjK"/>
                         <segue destination="NxR-GD-ywG" kind="showDetail" identifier="VideoVC" id="Af1-on-LMz"/>
                     </connections>
                 </viewController>
@@ -152,14 +152,30 @@
                                     <constraint firstAttribute="height" constant="238" id="97I-ca-MxX"/>
                                 </constraints>
                             </webView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OO6-lJ-yWi">
+                                <rect key="frame" x="21" y="288" width="343" height="62"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="62" id="EBD-Zu-Pld"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SavoyeLetPlain" family="Savoye LET" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.89355964470000004" green="0.89355964470000004" blue="0.89355964470000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="OO6-lJ-yWi" firstAttribute="trailing" secondItem="NLy-a1-SvC" secondAttribute="trailingMargin" constant="5" id="9He-XQ-b3z"/>
                             <constraint firstItem="p6M-AW-dHh" firstAttribute="leading" secondItem="NLy-a1-SvC" secondAttribute="leading" id="Gha-ZT-3DR"/>
                             <constraint firstAttribute="trailing" secondItem="p6M-AW-dHh" secondAttribute="trailing" id="Qo8-J3-dQS"/>
+                            <constraint firstItem="OO6-lJ-yWi" firstAttribute="top" secondItem="p6M-AW-dHh" secondAttribute="bottom" constant="50" id="WBz-m4-wLN"/>
                             <constraint firstItem="p6M-AW-dHh" firstAttribute="top" secondItem="NLy-a1-SvC" secondAttribute="top" id="dNn-y0-H8s"/>
+                            <constraint firstItem="OO6-lJ-yWi" firstAttribute="leading" secondItem="NLy-a1-SvC" secondAttribute="leadingMargin" constant="5" id="vtN-z2-79j"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="titleLabel" destination="OO6-lJ-yWi" id="21X-Iq-I30"/>
+                        <outlet property="webView" destination="p6M-AW-dHh" id="iXu-Li-Cl6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UUp-4f-fMw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -168,5 +184,6 @@
     </scenes>
     <resources>
         <image name="partybanner" width="610" height="297"/>
+        <image name="philcollins" width="980" height="560"/>
     </resources>
 </document>
